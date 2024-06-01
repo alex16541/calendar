@@ -1,0 +1,24 @@
+.AuthForm{
+  text-align: center;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+  h1{
+    font-size: large;
+    font-weight: 700;
+    line-height: 60px;
+  }
+
+  span{
+    color: red;
+  }
+
+  .inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+}
