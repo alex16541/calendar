@@ -1,33 +1,23 @@
-import { ButtonHTMLAttributes, ReactNode, memo } from "react";
+import { ButtonHTMLAttributes, ReactNode, memo } from 'react';
 
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import cls from "./Button.module.scss";
+import cls from './Button.module.scss';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  className?: string;
-  children?: ReactNode;
-  theme?: "light" | "dark" | "clear";
+    className?: string;
+    children?: ReactNode;
+    theme?: 'light' | 'dark' | 'clear';
 }
 
 const Button = (props: ButtonProps) => {
-  const {
-    className,
-    children,
-    type = "button",
-    theme = "dark",
-    ...buttonProps
-  } = props;
+    const { className, children, type = 'button', theme = 'dark', ...buttonProps } = props;
 
-  return (
-    <button
-      className={classNames(cls.Button, {}, [className, cls[theme]])}
-      type={type}
-      {...buttonProps}
-    >
-      {children}
-    </button>
-  );
+    return (
+        <button className={classNames(cls.Button, {}, [className, cls[theme]])} type={type} {...buttonProps}>
+            {children}
+        </button>
+    );
 };
 
 const Memoized = memo(Button);

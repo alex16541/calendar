@@ -1,24 +1,26 @@
-.AuthForm{
-  text-align: center;
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  
-  h1{
-    font-size: large;
-    font-weight: 700;
-    line-height: 60px;
-  }
-
-  span{
-    color: red;
-  }
-
-  .inputs{
+.AuthForm {
+    text-align: center;
+    width: 300px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
+    gap: 0.5rem;
+
+    h1 {
+        color: white;
+        font-size: x-large;
+        text-transform: uppercase;
+        font-weight: 900;
+        line-height: 30px;
+    }
+
+    span {
+        color: red;
+    }
+
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
 }

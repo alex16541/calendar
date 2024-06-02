@@ -11,11 +11,7 @@ interface CalendarProps {
 const Calendar = (props: CalendarProps) => {
     const { className } = props;
 
-    return (
-        <div className={classNames(cls.Calendar, {}, [className])}>
-           -
-        </div>
-    );
+    return <div className={classNames(cls.Calendar, {}, [className])}>-</div>;
 };
 
 const Memoized = memo(Calendar);

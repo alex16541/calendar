@@ -1,17 +1,17 @@
-import { memo } from "react";
+import { memo } from 'react';
 
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import cls from "./Dropdown.module.scss";
+import cls from './Dropdown.module.scss';
 
 interface DropdownProps {
-  className?: string;
+    className?: string;
 }
 
 const Dropdown = (props: DropdownProps) => {
-  const { className } = props;
+    const { className } = props;
 
-  return <div className={classNames(cls.Dropdown, {}, [className])}>-</div>;
+    return <div className={classNames(cls.Dropdown, {}, [className])}>-</div>;
 };
 
 const Memoized = memo(Dropdown);

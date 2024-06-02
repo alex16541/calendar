@@ -1,0 +1,15 @@
+.MainLayout {
+    height: 100%;
+    display: grid;
+    grid-template-areas: 'header' 'content';
+    grid-template-rows: auto 1fr;
+
+    .header {
+        grid-area: header;
+    }
+
+    .content {
+        grid-area: content;
+        overflow: auto;
+    }
+}

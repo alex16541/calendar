@@ -1,5 +1,6 @@
 export interface UserSchema {
-  authData?: {
-    login: string;
-  };
+    authData?: {
+        login: string;
+        avatar?: string;
+    };
 }

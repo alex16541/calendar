@@ -1,0 +1,29 @@
+.Header {
+    padding: 5px 5px 0;
+}
+
+.container {
+    color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 20px;
+}
+
+.User {
+    display: flex;
+    place-content: center;
+    gap: 10px;
+    font-size: larger;
+    font-weight: 700;
+}
+
+.Time {
+    font-size: larger;
+    font-weight: 700;
+}
+
+.Logout {
+    width: max-content;
+}

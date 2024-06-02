@@ -1,17 +1,17 @@
-import { memo } from "react";
+import { memo } from 'react';
 
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import cls from "./Modal.module.scss";
+import cls from './Modal.module.scss';
 
 interface ModalProps {
-  className?: string;
+    className?: string;
 }
 
 const Modal = (props: ModalProps) => {
-  const { className } = props;
+    const { className } = props;
 
-  return <div className={classNames(cls.Modal, {}, [className])}>-</div>;
+    return <div className={classNames(cls.Modal, {}, [className])}>-</div>;
 };
 
 const Memoized = memo(Modal);

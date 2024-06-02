@@ -1,22 +1,22 @@
-import { memo } from "react";
+import { memo } from 'react';
 
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import cls from "./AuthPage.module.scss";
-import { AuthForm } from "@/features/AuthForm";
+import cls from './AuthPage.module.scss';
+import { AuthForm } from '@/features/AuthForm';
 
 interface AuthPageProps {
-  className?: string;
+    className?: string;
 }
 
 const AuthPage = (props: AuthPageProps) => {
-  const { className } = props;
+    const { className } = props;
 
-  return (
-    <div className={classNames(cls.AuthPage, {}, [className])}>
-      <AuthForm />
-    </div>
-  );
+    return (
+        <div className={classNames(cls.AuthPage, {}, [className])}>
+            <AuthForm />
+        </div>
+    );
 };
 
 const Memoized = memo(AuthPage);

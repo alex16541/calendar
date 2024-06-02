@@ -11,11 +11,7 @@ interface SelectProps {
 const Select = (props: SelectProps) => {
     const { className } = props;
 
-    return (
-        <div className={classNames(cls.Select, {}, [className])}>
-           -
-        </div>
-    );
+    return <div className={classNames(cls.Select, {}, [className])}>-</div>;
 };
 
 const Memoized = memo(Select);
