@@ -11,6 +11,8 @@ import { Navigate } from 'react-router-dom';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { UserActions } from '@/entity/User';
 import { PageLoader } from '@/widgents/PageLoader';
+import { Calendar } from '@/shared/ui/Calendar';
+import { Card } from '@/shared/ui/Card';
 
 interface MainPageProps {
     className?: string;
@@ -19,7 +21,6 @@ interface MainPageProps {
 const MainPage = (props: MainPageProps) => {
     const { className } = props;
     const user = useAppSelector(selectUser);
-    const content = <h1>MainPage</h1>;
     const dispatch = useAppDispatch();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -32,6 +33,14 @@ const MainPage = (props: MainPageProps) => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const content = (
+        <main className={cls.content}>
+            <Card className={cls.wrapper}>
+                <Calendar onDayClick={(d) => console.log(d)} />
+            </Card>
+        </main>
+    );
 
     if (isLoading) return <PageLoader />;
 

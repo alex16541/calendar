@@ -1,2 +1,43 @@
 .Calendar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .daysOfWeek {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(7, minmax(30px, 100px));
+        grid-template-rows: 50px;
+        gap: 10px;
+        place-items: center;
+    }
+
+    .weekDay {
+        color: white;
+        font-weight: 700;
+        font-size: large;
+    }
+
+    .days {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(7, minmax(30px, 100px));
+        grid-template-rows: repeat(6, auto);
+        gap: 10px;
+    }
+
+    .button {
+        aspect-ratio: 1/1;
+        padding: 0;
+    }
+
+    .today {
+        color: black;
+        background-color: white;
+        font-weight: 900;
+    }
+
+    .fire {
+        color: red;
+    }
 }
