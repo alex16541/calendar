@@ -1,13 +1,13 @@
+import classNames from 'classnames';
 import { memo, useCallback } from 'react';
 
-import classNames from 'classnames';
-
-import cls from './Header.module.scss';
 import { UserActions, UserSchema } from '@/entity/User';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Button } from '@/shared/ui/Button';
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { Card } from '@/shared/ui/Card';
+
+import cls from './Header.module.scss';
 
 interface HeaderProps {
     className?: string;
@@ -27,7 +27,7 @@ const Header = (props: HeaderProps) => {
             <Card className={cls.container}>
                 <div className={cls.User}>
                     {user.authData?.avatar && <Avatar src={user.authData.avatar} alt={user.authData.login} />}
-                    {user.authData?.login}
+                    {user.authData?.login && <span className={cls.User__name}>{user.authData.login}</span>}
                 </div>
                 <span className={cls.Time}>{new Date().toLocaleDateString()}</span>
                 <Button className={cls.Logout} onClick={logout}>

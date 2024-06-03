@@ -2,6 +2,13 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: 100%;
+
+    .page {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 
     .daysOfWeek {
         width: 100%;
@@ -29,6 +36,9 @@
     .button {
         aspect-ratio: 1/1;
         padding: 0;
+        transition:
+            background-color 0s,
+            border-color 0.3s;
     }
 
     .today {
@@ -39,5 +49,46 @@
 
     .fire {
         color: red;
+    }
+}
+
+.Controlls {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 760px;
+    justify-content: start;
+
+    &__input,
+    &__prev,
+    &__next,
+    &__home {
+        box-sizing: border-box;
+        max-width: max-content;
+        height: 40px;
+    }
+}
+
+@media (max-width: 460px) {
+    .Calendar {
+        flex-direction: column-reverse;
+        justify-content: space-between;
+    }
+
+    .Controlls {
+        display: grid;
+        grid-template: auto auto / 1fr 1fr 1fr;
+
+        &__input {
+            order: -1;
+            grid-column: 1 / span 3;
+        }
+
+        &__input,
+        &__prev,
+        &__next,
+        &__home {
+            max-width: 100%;
+        }
     }
 }
