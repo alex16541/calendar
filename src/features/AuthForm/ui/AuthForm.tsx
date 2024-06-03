@@ -1,12 +1,16 @@
-import { memo, useCallback, useState } from 'react';
 import classNames from 'classnames';
+import { memo, useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { UserActions } from '@/entity/User';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Input } from '@/shared/ui/Input';
+
 import cls from './AuthForm.module.scss';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
-import { UserActions } from '@/entity/User';
+
+
 
 interface AuthFormProps {
     className?: string;

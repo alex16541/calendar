@@ -1,9 +1,10 @@
+import classNames from 'classnames';
 import { memo } from 'react';
 
-import classNames from 'classnames';
+
+import { AuthForm } from '@/features/AuthForm';
 
 import cls from './AuthPage.module.scss';
-import { AuthForm } from '@/features/AuthForm';
 
 interface AuthPageProps {
     className?: string;

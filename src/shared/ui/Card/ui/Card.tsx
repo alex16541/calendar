@@ -1,6 +1,6 @@
+import classNames from 'classnames';
 import { ReactNode, memo } from 'react';
 
-import classNames from 'classnames';
 
 import cls from './Card.module.scss';
 

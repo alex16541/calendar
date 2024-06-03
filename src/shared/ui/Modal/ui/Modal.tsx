@@ -1,6 +1,6 @@
+import classNames from 'classnames';
 import { memo } from 'react';
 
-import classNames from 'classnames';
 
 import cls from './Modal.module.scss';
 

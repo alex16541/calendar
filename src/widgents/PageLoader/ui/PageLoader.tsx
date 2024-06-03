@@ -1,9 +1,10 @@
+import classNames from 'classnames';
 import { memo } from 'react';
 
-import classNames from 'classnames';
+
+import { Card } from '@/shared/ui/Card';
 
 import cls from './PageLoader.module.scss';
-import { Card } from '@/shared/ui/Card';
 
 interface PageLoaderProps {
     className?: string;

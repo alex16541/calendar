@@ -1,18 +1,19 @@
-import { memo, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
-
-import cls from './MainPage.module.scss';
-import { MainLayout } from '@/shared/layouts/MainLayout';
-import { Header } from '@/widgents/Header';
-import { useAppSelector } from '@/shared/hooks/useAppSelector';
-import { selectUser } from '@/entity/User/model/selectors/userSelectors';
+import { memo, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+
 import { UserActions } from '@/entity/User';
-import { PageLoader } from '@/widgents/PageLoader';
+import { selectUser } from '@/entity/User/model/selectors/userSelectors';
+import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+import { useAppSelector } from '@/shared/hooks/useAppSelector';
+import { MainLayout } from '@/shared/layouts/MainLayout';
 import { Calendar } from '@/shared/ui/Calendar';
 import { Card } from '@/shared/ui/Card';
+import { Header } from '@/widgents/Header';
+import { PageLoader } from '@/widgents/PageLoader';
+
+import cls from './MainPage.module.scss';
 
 interface MainPageProps {
     className?: string;

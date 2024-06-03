@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
 import { UserSchema } from './UserSchema';
 
 const initialState: UserSchema = {};
