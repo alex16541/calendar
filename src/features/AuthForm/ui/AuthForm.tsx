@@ -10,8 +10,6 @@ import { Input } from '@/shared/ui/Input';
 
 import cls from './AuthForm.module.scss';
 
-
-
 interface AuthFormProps {
     className?: string;
 }
@@ -38,8 +36,14 @@ const AuthForm = (props: AuthFormProps) => {
         <Card className={classNames(cls.AuthForm, {}, [className])}>
             <h1>Авторизация</h1>
             <div className={cls.inputs}>
-                <Input theme="light" onChange={setLogin} value={login} />
-                <Input theme="light" onChange={setPassword} value={password} type="password" />
+                <Input theme="light" onChange={setLogin} value={login} placeholder="логин (user)" />
+                <Input
+                    theme="light"
+                    onChange={setPassword}
+                    value={password}
+                    placeholder="пароль (любой)"
+                    type="password"
+                />
             </div>
             <Button onClick={submit}>тык</Button>
             {error && <span>{error}</span>}

@@ -1,9 +1,12 @@
 import classNames from 'classnames';
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
+import { Task, TasksActions, selectTasksByUser } from '@/entity/Task';
+import { TaskList } from '@/entity/Task/ui/TaskList/TaskList';
 import { UserActions } from '@/entity/User';
 import { selectUser } from '@/entity/User/model/selectors/userSelectors';
+import { NewTaskForm } from '@/features/NewTaskForm';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
 import { useAppSelector } from '@/shared/hooks/useAppSelector';
 import { MainLayout } from '@/shared/layouts/MainLayout';
@@ -21,10 +24,12 @@ interface MainPageProps {
 
 const MainPage = (props: MainPageProps) => {
     const { className } = props;
-    const user = useAppSelector(selectUser);
-    const dispatch = useAppDispatch();
-    const [isLoading, setIsLoading] = useState(true);
 
+    const user = useAppSelector(selectUser);
+    const tasks = useAppSelector(selectTasksByUser(user.authData?.login));
+    const dispatch = useAppDispatch();
+
+    const [isLoading, setIsLoading] = useState(true);
     const [date, setDate] = useState('');
     const [isOpen, setIsOpen] = useState(false);
 
@@ -32,6 +37,7 @@ const MainPage = (props: MainPageProps) => {
         // Таймаут просто чтобы лоадер было видно :D
         setTimeout(() => {
             dispatch(UserActions.init());
+            dispatch(TasksActions.init());
             setIsLoading(false);
         }, 300);
 
@@ -47,13 +53,34 @@ const MainPage = (props: MainPageProps) => {
         setIsOpen(false);
     }, []);
 
+    const toggleTask = useCallback(
+        (task: Task) => {
+            dispatch(TasksActions.toggleTask(task));
+        },
+        [dispatch],
+    );
+
+    const deleteTask = useCallback(
+        (task: Task) => {
+            dispatch(TasksActions.deleteTask(task.id));
+        },
+        [dispatch],
+    );
+
+    const currentTasks = useMemo(() => {
+        return tasks.filter((t) => t.date === date);
+    }, [date, tasks]);
+
     const content = (
         <main className={cls.content}>
             <Card className={cls.wrapper}>
                 <Calendar onDayClick={openModal} />
             </Card>
-            <Modal isOpen={isOpen} onClose={closeModal} classNameContent={cls.modalContent}>
+
+            <Modal isOpen={isOpen} onClose={closeModal} classNameContent={cls.modal}>
                 <div className={cls.header}>{date}</div>
+                <TaskList tasks={currentTasks} onChange={toggleTask} onDelete={deleteTask} />
+                <NewTaskForm date={date} />
             </Modal>
         </main>
     );

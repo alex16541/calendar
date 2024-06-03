@@ -44,8 +44,10 @@ export const useCalendar = () => {
     const changeMonth = useCallback((month: number) => {
         if (month > 11) {
             setMonth(0);
+            setYear((y) => ++y);
         } else if (month < 0) {
             setMonth(11);
+            setYear((y) => --y);
         } else {
             setMonth(month);
         }

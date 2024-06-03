@@ -1,0 +1,15 @@
+.NewTaskForm {
+    font-size: large;
+    display: flex;
+    gap: 10px;
+}
+
+.taskInput {
+    height: 45px;
+    width: 100%;
+}
+
+.addTaskButton {
+    height: 45px;
+    width: max-content;
+}
