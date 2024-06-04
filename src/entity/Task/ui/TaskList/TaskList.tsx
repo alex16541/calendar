@@ -19,7 +19,7 @@ const TaskList = (props: TaskListProps) => {
     if (tasks.length === 0)
         return (
             <div className={cls.empty}>
-                🦖<span>РРР... ТУТ НИЧЕГО НЕТ РРР...</span>
+                🦖<span className={cls.text}>РРР... ТУТ НИЧЕГО НЕТ РРР...</span>
             </div>
         );
 
