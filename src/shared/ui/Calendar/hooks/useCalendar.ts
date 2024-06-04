@@ -34,12 +34,22 @@ export const useCalendar = () => {
         return currentMonth === month && currentYear === year;
     }, [currentYear, currentMonth, month, year]);
 
-    const onDateChange = useCallback((value: string) => {
-        const [newMonth, newYear] = value.split('-');
+    const reset = useCallback(() => {
+        setMonth(currentMonth);
+        setYear(currentYear);
+    }, [currentMonth, currentYear]);
 
-        setMonth(+newMonth - 1);
-        setYear(+newYear);
-    }, []);
+    const onDateChange = useCallback(
+        (value: string) => {
+            if (!value) return reset();
+
+            const [newYear, newMonth] = value.split('-');
+
+            setMonth(+newMonth - 1);
+            setYear(+newYear);
+        },
+        [reset],
+    );
 
     const changeMonth = useCallback((month: number) => {
         if (month > 11) {
@@ -61,15 +71,10 @@ export const useCalendar = () => {
         changeMonth(month + 1);
     }, [changeMonth, month]);
 
-    const reset = useCallback(() => {
-        setMonth(currentMonth);
-        setYear(currentYear);
-    }, [currentMonth, currentYear]);
-
     const formatedDate = useMemo(() => {
         let m: number | string = month + 1;
 
-        if (m < 10) m = `0${m}`;
+        if (+m < 10) m = `0${m}`;
 
         return `${year}-${m}`;
     }, [year, month]);
