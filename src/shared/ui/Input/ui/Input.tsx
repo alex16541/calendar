@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { ChangeEvent, InputHTMLAttributes, memo, useCallback } from 'react';
 
-
 import cls from './Input.module.scss';
 
 type InputBaseProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'>;
@@ -26,6 +25,7 @@ const Input = (props: InputProps) => {
         <input
             className={classNames(cls.Input, {}, [className, cls[theme]])}
             onChange={handleOnChange}
+            data-testid="Input"
             {...inputProps}
         />
     );

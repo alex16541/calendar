@@ -13,3 +13,13 @@ export const selectTasksByUser = (username?: string) =>
     createSelector([selectAllTasks], (t) => {
         return t.filter((t) => t.username === username);
     });
+
+export const selectTaskById = (id?: string) =>
+    createSelector([selectAllTasks], (t) => {
+        return t.find((t) => t.id === id);
+    });
+
+export const selectUserTasksByDate = (date: string, username?: string) =>
+    createSelector([selectTasksByUser(username)], (userTasks) => {
+        return userTasks.filter((t) => t.date === date);
+    });

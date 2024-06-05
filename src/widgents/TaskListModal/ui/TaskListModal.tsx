@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback } from 'react';
 
-import { Task, TasksActions, selectTasksByUser } from '@/entity/Task';
+import { Task, TasksActions, selectUserTasksByDate } from '@/entity/Task';
 import { TaskList } from '@/entity/Task/ui/TaskList/TaskList';
 import { NewTaskForm } from '@/features/NewTaskForm';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
@@ -20,8 +20,7 @@ interface TaskListModalProps {
 
 const TaskListModal = (props: TaskListModalProps) => {
     const { className, isOpen, onClose, date, username } = props;
-
-    const tasks = useAppSelector(selectTasksByUser(username));
+    const currentTasks = useAppSelector(selectUserTasksByDate(date, username));
     const dispatch = useAppDispatch();
 
     const toggleTask = useCallback(
@@ -38,16 +37,13 @@ const TaskListModal = (props: TaskListModalProps) => {
         [dispatch],
     );
 
-    const currentTasks = useMemo(() => {
-        return tasks.filter((t) => t.date === date);
-    }, [date, tasks]);
-
     return (
         <Modal
             className={classNames(cls.TaskListModal, {}, [className])}
             isOpen={isOpen}
             onClose={onClose}
             classNameContent={cls.modal}
+            data-testid="TaskListModal"
         >
             <span className={cls.header}>{date}</span>
             <TaskList tasks={currentTasks} onChange={toggleTask} onDelete={deleteTask} />

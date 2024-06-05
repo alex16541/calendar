@@ -1,14 +1,15 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 
-import store from '../Config/store';
+import { AppStore } from '../Config/types';
 
 interface StoreProviderProps {
-    children: ReactElement;
+    children: ReactNode;
+    store: AppStore;
 }
 
 export const StoreProvider = (props: StoreProviderProps) => {
-    const { children } = props;
+    const { children, store } = props;
 
     return <Provider store={store}>{children}</Provider>;
 };

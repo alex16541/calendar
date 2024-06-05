@@ -57,7 +57,7 @@ const MainPage = (props: MainPageProps) => {
     return (
         <MainLayout
             className={classNames(cls.MainPage, {}, [className])}
-            header={<Header user={user} />}
+            header={<Header />}
             content={
                 <main className={cls.content}>
                     <Card className={cls.wrapper}>

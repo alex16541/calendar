@@ -20,7 +20,7 @@ interface ModalProps {
 }
 
 export const Modal = (props: ModalProps) => {
-    const { className, classNameContent, children, isOpen = false, onClose, lazy } = props;
+    const { className, classNameContent, children, isOpen = false, onClose, lazy, ...otherProps } = props;
 
     const { closeHandler, isMounted, isClosing } = useModal({
         isOpen,
@@ -37,7 +37,7 @@ export const Modal = (props: ModalProps) => {
 
     return (
         <Portal>
-            <div className={classNames(cls.Modal, mods, [className])}>
+            <div className={classNames(cls.Modal, mods, [className])} data-testid="Modal" {...otherProps}>
                 <Overlay onClick={closeHandler} />
                 <Card className={classNames(cls.content, {}, [classNameContent])}>
                     {children}

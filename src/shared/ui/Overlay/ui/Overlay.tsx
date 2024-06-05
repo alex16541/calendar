@@ -15,7 +15,13 @@ const Overlay = (props: OverlayProps) => {
         onClick?.();
     }, [onClick]);
 
-    return <div className={classNames(cls.Overlay, {}, [className])} onClick={handleClose} />;
+    return (
+        <div
+            className={classNames(cls.Overlay, {}, [className])}
+            onClick={handleClose}
+            data-testid="Overlay"
+        />
+    );
 };
 
 const Memoized = memo(Overlay);

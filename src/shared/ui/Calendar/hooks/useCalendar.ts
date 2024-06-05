@@ -1,18 +1,17 @@
 import { useCallback, useMemo, useState } from 'react';
 
-export const useCalendar = () => {
-    const currentMonth = useMemo(() => {
-        const date = new Date();
-        return date.getUTCMonth();
-    }, []);
+import { getFormatedDate } from '@/shared/utils/date';
 
-    const currentYear = useMemo(() => {
-        const date = new Date();
-        return date.getFullYear();
-    }, []);
+interface useCalendarProps {
+    selectedMonth: number;
+    selectedYear: number;
+}
 
-    const [year, setYear] = useState(currentYear);
-    const [month, setMonth] = useState(currentMonth);
+export const useCalendar = (props: useCalendarProps) => {
+    const { selectedMonth: selectedMonth, selectedYear: selectedYear } = props;
+
+    const [year, setYear] = useState(selectedYear);
+    const [month, setMonth] = useState(selectedMonth);
 
     const currentDay = useMemo(() => {
         const date = new Date();
@@ -31,13 +30,13 @@ export const useCalendar = () => {
     }, [month, year]);
 
     const isCurrentMonth = useMemo(() => {
-        return currentMonth === month && currentYear === year;
-    }, [currentYear, currentMonth, month, year]);
+        return selectedMonth === month && selectedYear === year;
+    }, [selectedYear, selectedMonth, month, year]);
 
     const reset = useCallback(() => {
-        setMonth(currentMonth);
-        setYear(currentYear);
-    }, [currentMonth, currentYear]);
+        setMonth(new Date().getMonth());
+        setYear(new Date().getFullYear());
+    }, []);
 
     const onDateChange = useCallback(
         (value: string) => {
@@ -72,17 +71,11 @@ export const useCalendar = () => {
     }, [changeMonth, month]);
 
     const formatedDate = useMemo(() => {
-        let m: number | string = month + 1;
-
-        if (+m < 10) m = `0${m}`;
-
-        return `${year}-${m}`;
+        return getFormatedDate(year, month);
     }, [year, month]);
 
     return {
         currentDay,
-        currentMonth,
-        currentYear,
         month,
         year,
         firstDayPosition,

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import { memo } from 'react';
-
+import { memo, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { AuthForm } from '@/features/AuthForm';
 
@@ -12,10 +12,15 @@ interface AuthPageProps {
 
 const AuthPage = (props: AuthPageProps) => {
     const { className } = props;
+    const navigate = useNavigate();
+
+    const onLoign = useCallback(() => {
+        navigate('/');
+    }, [navigate]);
 
     return (
         <div className={classNames(cls.AuthPage, {}, [className])}>
-            <AuthForm />
+            <AuthForm onLoginSuccess={onLoign} />
         </div>
     );
 };

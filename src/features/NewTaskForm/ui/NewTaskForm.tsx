@@ -27,20 +27,29 @@ const NewTaskForm = (props: NewTaskFormProps) => {
 
             if (!user?.login || !text) return;
 
+            setText('');
             dispatch(TasksActions.addTask({ username: user.login, date: date, text, id: '' }));
         },
         [user?.login, text, dispatch, date],
     );
 
     return (
-        <div>
-            <form onSubmit={onSubmit} className={classNames(cls.NewTaskForm, {}, [className])}>
-                <Input value={text} className={cls.taskInput} placeholder="я хочу ..." onChange={setText} />
-                <Button type="submit" className={cls.addTaskButton}>
-                    🏹
-                </Button>
-            </form>
-        </div>
+        <form
+            onSubmit={onSubmit}
+            className={classNames(cls.NewTaskForm, {}, [className])}
+            data-testid="NewTaskForm"
+        >
+            <Input
+                value={text}
+                className={cls.taskInput}
+                placeholder="я хочу ..."
+                onChange={setText}
+                data-testid="NewTaskForm:input"
+            />
+            <Button type="submit" className={cls.addTaskButton} data-testid="NewTaskForm:submit">
+                🏹
+            </Button>
+        </form>
     );
 };
 

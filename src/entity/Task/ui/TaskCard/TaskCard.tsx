@@ -33,18 +33,19 @@ const TaskCard = (props: TaskCardProps) => {
     if (!task) return null;
 
     return (
-        <Card className={classNames(cls.TaskCard, {}, [className])}>
+        <Card className={classNames(cls.TaskCard, {}, [className])} data-testid="Task">
             <Button
                 theme="clear"
                 onClick={handleOnChange}
                 className={classNames(cls.checkbox, { [cls.checked]: task.complited })}
+                data-testid="Task:check"
             >
                 {task.complited ? '✅' : '🟦'}
             </Button>
             <p>
                 <b>{task.text}</b>
             </p>
-            <Button className={cls.deletButton} onClick={handleOnDelete}>
+            <Button className={cls.deletButton} onClick={handleOnDelete} data-testid="Task:delete">
                 🗑️
             </Button>
         </Card>

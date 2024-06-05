@@ -30,6 +30,7 @@ export const Avatar = (props: AvatarProps) => {
             className={classNames(cls.Avatar, { [cls.rounded]: rounded }, [className])}
             src={src}
             style={avatarStyle}
+            data-testid="Avatar"
         />
     );
 };

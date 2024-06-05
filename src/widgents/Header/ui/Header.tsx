@@ -1,8 +1,10 @@
 import classNames from 'classnames';
 import { memo, useCallback } from 'react';
 
-import { UserActions, UserSchema } from '@/entity/User';
+import { UserActions } from '@/entity/User';
+import { selectUser } from '@/entity/User/model/selectors/userSelectors';
 import { useAppDispatch } from '@/shared/hooks/useAppDispatch';
+import { useAppSelector } from '@/shared/hooks/useAppSelector';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
@@ -11,11 +13,11 @@ import cls from './Header.module.scss';
 
 interface HeaderProps {
     className?: string;
-    user: UserSchema;
 }
 
 const Header = (props: HeaderProps) => {
-    const { className, user } = props;
+    const { className } = props;
+    const user = useAppSelector(selectUser);
     const dispath = useAppDispatch();
 
     const logout = useCallback(() => {
@@ -23,7 +25,7 @@ const Header = (props: HeaderProps) => {
     }, [dispath]);
 
     return (
-        <nav className={classNames(cls.Header, {}, [className])}>
+        <nav className={classNames(cls.Header, {}, [className])} data-testid="Header">
             <Card className={cls.container}>
                 <div className={cls.User}>
                     {user.authData?.avatar && <Avatar src={user.authData.avatar} alt={user.authData.login} />}

@@ -1,6 +1,5 @@
 import classNames from 'classnames';
-import { ReactNode, memo } from 'react';
-
+import { ReactNode } from 'react';
 
 import cls from './Card.module.scss';
 
@@ -9,12 +8,12 @@ interface CardProps {
     children?: ReactNode;
 }
 
-const Card = (props: CardProps) => {
-    const { className, children } = props;
+export const Card = (props: CardProps) => {
+    const { className, children, ...otherProps } = props;
 
-    return <div className={classNames(cls.Card, {}, [className])}>{children}</div>;
+    return (
+        <div className={classNames(cls.Card, {}, [className])} data-testid="Card" {...otherProps}>
+            {children}
+        </div>
+    );
 };
-
-const Memoized = memo(Card);
-
-export { Memoized as Card };

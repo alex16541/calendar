@@ -7,5 +7,5 @@ interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
 export const AppImage = (props: AppImageProps) => {
     const { className, alt = 'image', ...otherProps } = props;
 
-    return <img alt={alt} className={className} {...otherProps} />;
+    return <img alt={alt} className={className} data-testid="AppImage" {...otherProps} />;
 };

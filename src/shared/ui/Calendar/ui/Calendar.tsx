@@ -1,6 +1,8 @@
 import classNames from 'classnames';
 import { memo } from 'react';
 
+import { getCurrentMonth, getCurrentYear, getMonthLength } from '@/shared/utils/date';
+
 import { Button } from '../../Button';
 import { Input } from '../../Input';
 import { daysOfWeek } from '../constants';
@@ -17,10 +19,17 @@ import cls from './Calendar.module.scss';
 interface CalendarProps {
     className?: string;
     onDayClick?: (day: string) => void;
+    selectedYear?: number;
+    selectedMonth?: number;
 }
 
 const Calendar = (props: CalendarProps) => {
-    const { className, onDayClick } = props;
+    const {
+        className,
+        onDayClick,
+        selectedYear = getCurrentYear(),
+        selectedMonth = getCurrentMonth(),
+    } = props;
     const {
         currentDay,
         month,
@@ -32,24 +41,25 @@ const Calendar = (props: CalendarProps) => {
         reset,
         formatedDate,
         isCurrentMonth,
-    } = useCalendar();
+    } = useCalendar({ selectedYear, selectedMonth });
 
     return (
-        <div className={classNames(cls.Calendar, {}, [className])}>
+        <div className={classNames(cls.Calendar, {}, [className])} data-testid="Calendar">
             <div className={cls.Controlls}>
-                <Button onClick={prevMonth} className={cls.Controlls__prev}>
+                <Button data-testid="Calendar:prevMonth" onClick={prevMonth} className={cls.Controlls__prev}>
                     ←_←
                 </Button>
                 <Input
+                    data-testid="Calendar:input"
                     type="month"
                     className={cls.Controlls__input}
                     value={formatedDate}
                     onChange={onDateChange}
                 />
-                <Button onClick={reset} className={cls.Controlls__home}>
+                <Button data-testid="Calendar:currentDate" onClick={reset} className={cls.Controlls__home}>
                     🏠
                 </Button>
-                <Button onClick={nextMonth} className={cls.Controlls__next}>
+                <Button data-testid="Calendar:nextMonth" onClick={nextMonth} className={cls.Controlls__next}>
                     →_→
                 </Button>
             </div>
@@ -62,10 +72,11 @@ const Calendar = (props: CalendarProps) => {
                     ))}
                 </div>
                 <div className={cls.days}>
-                    {Array(31)
+                    {Array(getMonthLength(year, month))
                         .fill(1)
                         .map((_, i) => (
                             <Button
+                                data-testid={`Calendar:day:${i + 1}`}
                                 className={classNames(cls.button, {
                                     [cls.today]: i + 1 === currentDay && isCurrentMonth,
                                 })}
